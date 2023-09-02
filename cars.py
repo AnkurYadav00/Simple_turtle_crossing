@@ -1,12 +1,14 @@
 import random
 import time
-from turtle import Turtle, forward, backward
+from turtle import Turtle
 
 COLORS = ["red", "green", "yellow", "black", "blue", "pink", "orange"]
 SPEED = 0.2
 
+
 class Cars:
     def __init__(self):
+        self.constraint = True
         self.speed = SPEED
         self.y = None
         self.Cars_list = []
@@ -24,8 +26,10 @@ class Cars:
 
     def cars_flow(self):
         """ generate each car on screen with random frequency """
-        for i in range(random.randint(0, 1)):
-            self.create_car()
+        if self.constraint:
+            for i in range(random.randint(0, 1)):
+                self.create_car()
+        self.constraint = not self.constraint
 
     def motion(self):
         time.sleep(self.speed)
